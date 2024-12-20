@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sewa Mobil - Halaman Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .marquee {
+            position: absolute; 
+            top: 0; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            width: 100%; 
+            animation: marquee 9s linear infinite; 
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); } 
+            100% { transform: translateX(-100%); }
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-container img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #2b3a42;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #1c262b;
+        }
+
+        header {
+            background-color: #2b3a42;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .car-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .car-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 32%;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .car-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-item h3 {
+            background-color: #2b3a42;
+            color: white;
+            padding: 10px;
+        }
+
+        .car-item p {
+            padding: 15px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .car-item .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2b3a42;
+            padding: 10px;
+        }
+
+        .car-item button {
+            background-color: #2b3a42;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .car-item button:hover {
+            background-color: #1c262b;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container input,
+        .form-container select,
+        .form-container button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            background-color: #2b3a42;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #1c262b;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #2b3a42;
+            color: white;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        .contact-info {
+            background-color: #2b3a42;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 10px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+    </style>
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username && password) {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('rental-page').style.display = 'block';
+            } else {
+                alert('Login dulu ya kalau mau melihat web ini :).');
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const car = document.getElementById('car').value;
+            const pickupLocation = document.getElementById('pickup-location').value;
+            const returnLocation = document.getElementById('return-location').value;
+            const rentalDays = document.getElementById('rental-days').value;
+
+            document.getElementById('confirm-name').textContent = name;
+            document.getElementById('confirm-car').textContent = car;
+            document.getElementById('confirm-pickup').textContent = pickupLocation;
+            document.getElementById('confirm-return').textContent = returnLocation;
+            document.getElementById('confirm-days').textContent = rentalDays;
+
+            document.getElementById('rental-page').style.display = 'none';
+            document.getElementById('confirmation-page').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('confirmation-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+
+<div id="login-page" class="login-container">
+    <div class="marquee">
+        <p>🎉 Selamat datang di web rental mobil kami</p></div>
+    <img src="LOGO.png" alt="Logo Rental">
+    <h2>Login</h2>
+    <form id="login-form" onsubmit="return handleLogin(event)">
+        <input type="text" id="username" placeholder="Masukkan Username" required>
+        <input type="password" id="password" placeholder="Masukkan Password" required>
+        <button type="submit">Masuk</button>
+    </form>
+</div>
+
+<div id="rental-page" class="container" style="display: none;">
+    <header>
+        <h1>Sewa Mobil - Rental Mobil</h1>
+        <p>Temukan Mobil Impian Anda untuk Disewa!</p>
+    </header>
+
+    <section class="car-list">
+        <div class="car-item">
+            <img src="mobil fortuner.jpeg" alt="Mobil Fortuner">
+            <h3>Toyota Fortuner</h3>
+            <p>Mobil Fortuner yang cocok untuk keluarga dengan kapasitas besar dan nyaman untuk perjalanan jauh.</p>
+            <div class="price">Rp 500,000 / hari</div>
+            <button>Sewa Sekarang</button>
+        </div>
+
+        <div class="car-item">
+            <img src="movil 2.jpeg" alt="Mobil Avanza">
+            <h3>Toyota Avanza</h3>
+            <p>Mobil Avanza stylish dengan performa tinggi, cocok untuk Anda yang menginginkan kenyamanan dan kecepatan.</p>
+            <div class="price">Rp 350,000 / hari</div>
+            <button>Sewa Sekarang</button>
+        </div>
+
+        <div class="car-item">
+            <img src="mobil 3.jpeg" alt="Mobil Calya">
+            <h3>Toyota Calya</h3>
+            <p>Mobil Calya premium dengan fitur lengkap dan desain mewah, sempurna untuk perjalanan bisnis atau liburan.</p>
+            <div class="price">Rp 280,000 / hari</div>
+            <button>Sewa Sekarang</button>
+        </div>
+    </section>
+
+    <div class="form-container">
+        <h2>Formulir Penyewaan Mobil</h2>
+        <form id="rental-form" onsubmit="handleFormSubmit(event)">
+            <label for="name">Nama Lengkap:</label>
+            <input type="text" id="name" name="name" placeholder="Masukkan Nama Anda" required>
+
+            <label for="car">Pilih Mobil:</label>
+            <select id="car" name="car" required>
+                <option value="Toyota Fortuner">Toyota Fortuner</option>
+                <option value="Toyota Avanza">Toyota Avanza</option>
+                <option value="Toyota Calya">Toyota Calya</option>
+            </select>
+
+            <label for="pickup-location">Pilih Lokasi Pengambilan:</label>
+            <select id="pickup-location" name="pickup-location" required>
+                <option value="Tangerang">Tangerang</option>
+                <option value="Bandung">Bandung</option>
+                <option value="Bogor">Bogor</option>
+            </select>
+
+            <label for="return-location">Pilih Lokasi Pengembalian:</label>
+            <select id="return-location" name="return-location" required>
+                <option value="Tangerang">Tangerang</option>
+                <option value="Bandung">Bandung</option>
+                <option value="Bogor">Bogor</option>
+            </select>
+
+            <label for="rental-days">Durasi Sewa (hari):</label>
+            <input type="number" id="rental-days" name="rental-days" placeholder="Masukkan jumlah hari" required>
+
+            <button type="submit">Sewa Sekarang</button>
+        </form>
+    </div>
+</div>
+
+<div id="confirmation-page" class="container" style="display: none;">
+    <header>
+        <h1>Sewa Mobil Berhasil</h1>
+    </header>
+    <div class="form-container">
+        <h2>Riwayat Pendaftaran</h2>
+        <p><strong>Nama Lengkap:</strong> <span id="confirm-name"></span></p>
+        <p><strong>Mobil Dipilih:</strong> <span id="confirm-car"></span></p>
+        <p><strong>Lokasi Pengambilan:</strong> <span id="confirm-pickup"></span></p>
+        <p><strong>Lokasi Pengembalian:</strong> <span id="confirm-return"></span></p>
+        <p><strong>Durasi Sewa:</strong> <span id="confirm-days"></span> hari</p>
+        <button onclick="goBack()">Kembali ke Halaman Utama</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Sewa Mobil. Semua Hak Dilindungi.</p>
+</footer>
+
+<div class="contact-info">
+    <h2>Info Kontak Kami</h2>
+    <p>Email: wahyurmdhn030919@gmail.com</p>
+    <p>Telepon: +62 813-9434-1010</p>
+    <p>Alamat: Jl. Seroja No. C2, Tangerang</p>
+</div>
+
+</body>
+</html>
